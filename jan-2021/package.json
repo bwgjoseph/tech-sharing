@@ -1,0 +1,28 @@
+{
+  "name": "jan-2021",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "promise": "ts-node src/promise-all.ts",
+    "async": "ts-node src/async.ts",
+    "improve": "ts-node src/improve.ts",
+    "exit": "ts-node src/exit-early.ts",
+    "optional": "ts-node src/optional-chaining.ts",
+    "map": "ts-node src/higher-order-function-map.ts",
+    "filter": "ts-node src/higher-order-function-filter.ts",
+    "reduce": "ts-node src/higher-order-function-reduce.ts",
+    "every": "ts-node src/higher-order-function-every.ts",
+    "some": "ts-node src/higher-order-function-some.ts",
+    "operators": "ts-node src/operators.ts",
+    "srp": "ts-node src/srp.ts",
+    "test": "mocha --require ts-node/register test/ts/*.ts --exit"
+  },
+  "keywords": [],
+  "author": "bwgjoseph",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  }
+}
