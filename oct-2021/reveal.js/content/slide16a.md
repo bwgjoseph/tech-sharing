@@ -1,0 +1,1 @@
+Prefer [package-by-feature](https://phauer.com/2020/package-by-feature/) over package-by-layer

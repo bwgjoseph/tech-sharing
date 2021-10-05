@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<!-- Start -->
+				<section data-markdown="content/slide1.md"></section>
+				<!-- Disclaimer -->
+				<section>
+					<section data-markdown="content/slide2.md"></section>
+					<section data-markdown="content/slide2a.md"></section>
+				</section>
+				<!-- Agenda -->
+				<section data-markdown="content/slide3.md"></section>
+				<!-- Intro to Spring Framework -->
+				<!-- https://www.marcobehler.com/guides/spring-framework -->
+				<section>
+					<section data-markdown="content/slide4.md"></section>
+					<section data-markdown="content/slide4a.md"></section>
+					<section data-markdown="content/slide4b.md"></section>
+					<section>
+						<p>How does it do that?</p>
+					</section>
+					<section>
+						<img src="/content/application-context.svg" srcset="/content/application-context.svg" alt="application-context">
+					</section>
+					<section data-markdown="content/slide4c.md"></section>
+					<section data-markdown="content/slide4d.md"></section>
+					<section data-markdown="content/slide4e.md"></section>
+					<section>
+						<img src="/content/spring-framework.svg" srcset="/content/spring-framework.svg" alt="spring-framework">
+					</section>
+					<section data-markdown="content/slide-demo.md"></section>
+				</section>
+				<!-- Lifecycle of Beans -->
+				<section>
+					<section data-markdown="content/slide5.md"></section>
+					<section>
+						<img src="/content/bean-lifecycle.svg" srcset="/content/bean-lifecycle.svg" alt="bean-lifecycle">
+					</section>
+					<section>
+						<h4>Initialization</h4>
+						<img src="/content/bean-init.svg" srcset="/content/bean-init.svg" alt="bean-init">
+					</section>
+					<section data-markdown="content/slide5a.md"></section>
+					<section data-markdown="content/slide5b.md"></section>
+					<section data-markdown="content/slide5c.md"></section>
+					<section>
+						<h4>Use</h4>
+						<pre data-id="code-animation">
+							<code class="hljs" data-trim data-line-numbers>
+							@Service
+							public class PricingService {
+								private final PriceVerifier priceVerifier;
+
+								public PricingService(PriceVerifier priceVerifier) {
+									this.priceVerifier = priceVerifier;
+								}
+							}
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h4>Destruction</h4>
+						<pre data-id="code-animation">
+							<code class="hljs" data-trim data-line-numbers>
+							@Configuration
+							public class PriceConfiguration {
+								@Bean(destroyMethod = "destroy")
+								public PricingService ps() {
+									return new PricingService(pv());
+								}
+							}
+
+							@Service
+							public class PricingService {
+								public void destroy() {
+									// free up resource
+								}
+							}
+							</code>
+						</pre>
+					</section>
+					<section>
+						<img src="/content/spring-bean-lifecycle.png" srcset="/content/spring-bean-lifecycle.png" alt="spring-bean-lifecycle">
+						<a href="https://reflectoring.io/spring-bean-lifecycle/">Source</a>
+					</section>
+					<section data-markdown="content/slide-demo.md"></section>
+				</section>
+				<!-- Application Events -->
+				<section>
+					<section data-markdown="content/slide6.md"></section>
+					<section data-markdown="content/slide6a.md"></section>
+					<section>
+						A couple of ways to listen to the event(s)
+					</section>
+					<section data-markdown="content/slide6b.md"></section>
+					<section data-markdown="content/slide6c.md"></section>
+					<section data-markdown="content/slide-demo.md"></section>
+				</section>
+				<!-- Validation -->
+				<section>
+					<section data-markdown="content/slide7.md"></section>
+					<section>
+						<p class="fragment"><span style="color:red">Specifications</span></p>
+						<p class="fragment fade-in">Bean Validation 1.0 (JSR 303)</p>
+						<p class="fragment fade-in">Bean Validation 1.1 (JSR 349)</p>
+						<p class="fragment fade-in">Bean Validation 2.0 (JSR 380)</p>
+						<p class="fragment"><span style="color:red">Reference Implementation</span></p>
+						<p class="fragment fade-in">Hibernate Validator</p>
+						<p class="fragment fade-in">Apache BVal (exclude 2.0)</p>
+					</section>
+					<section data-markdown="content/slide7a.md"></section>
+					<!--
+						https://www.baeldung.com/javax-validation
+						https://www.baeldung.com/spring-boot-bean-validation
+						https://springframework.guru/bean-validation-in-spring-boot/
+						https://github.com/ghusta/bean-validation-test
+					-->
+					<section data-markdown="content/slide7b.md"></section>
+					<section data-markdown="content/slide7c.md"></section>
+					<section data-markdown="content/slide7d.md"></section>
+				</section>
+				<!-- SpEL -->
+				<section>
+					<section data-markdown="content/slide8.md"></section>
+					<section data-markdown="content/slide8a.md"></section>
+				</section>
+				<!-- AOP -->
+				<section>
+					<!-- https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#aop-introduction-defn -->
+					<!-- https://www.baeldung.com/spring-aop -->
+					<section data-markdown="content/slide9.md"></section>
+					<section data-markdown="content/slide9a.md"></section>
+					<section data-markdown="content/slide9b.md"></section>
+					<section data-markdown="content/slide9c.md"></section>
+					<section data-markdown="content/slide9d.md"></section>
+				</section>
+				<!-- Intro to Spring Boot -->
+				<section>
+					<section data-markdown="content/slide10.md"></section>
+					<section data-markdown="content/slide10a.md"></section>
+					<section data-markdown="content/slide10b.md"></section>
+				</section>
+				<!-- What Spring Boot provides -->
+				<section>
+					<section data-markdown="content/slide11.md"></section>
+					<section>
+						Core Features
+					</section>
+					<section data-markdown="content/slide11a.md"></section>
+					<section data-markdown="content/slide11b.md"></section>
+					<section data-markdown="content/slide11c.md"></section>
+					<section data-markdown="content/slide11d.md"></section>
+					<section>
+						Web Applications
+					</section>
+					<section data-markdown="content/slide11e.md"></section>
+					<section data-markdown="content/slide11f.md"></section>
+					<section data-markdown="content/slide11g.md"></section>
+					<section>
+						Working with data
+					</section>
+					<section data-markdown="content/slide11h.md"></section>
+				</section>
+				<!-- Spring Boot Actuator -->
+				<section>
+					<section data-markdown="content/slide12.md"></section>
+				</section>
+				<!-- Common Annotation -->
+				<section>
+					<section data-markdown="content/slide13.md"></section>
+					<section data-markdown="content/slide13a.md"></section>
+					<section data-markdown="content/slide13b.md"></section>
+					<section data-markdown="content/slide13c.md"></section>
+					<section data-markdown="content/slide13d.md"></section>
+					<section data-markdown="content/slide13e.md"></section>
+					<section data-markdown="content/slide13f.md"></section>
+					<section data-markdown="content/slide13g.md"></section>
+					<section data-markdown="content/slide13h.md"></section>
+				</section>
+				<!-- Questions and Answers -->
+				<section>
+					<section data-markdown="content/slide14.md"></section>
+					<section data-markdown="content/slide14a.md"></section>
+					<section data-markdown="content/slide14b.md"></section>
+					<section data-markdown="content/slide14c.md"></section>
+					<section data-markdown="content/slide14d.md"></section>
+					<section data-markdown="content/slide14e.md"></section>
+					<section data-markdown="content/slide14f.md"></section>
+					<section data-markdown="content/slide14g.md"></section>
+				</section>
+				<!-- Spring Best Practices -->
+				<section>
+					<section data-markdown="content/slide15.md"></section>
+					<section data-markdown="content/slide15a.md"></section>
+					<section data-markdown="content/slide15b.md"></section>
+					<section data-markdown="content/slide15c.md"></section>
+					<section data-markdown="content/slide15d.md"></section>
+					<section data-markdown="content/slide15e.md"></section>
+					<section data-markdown="content/slide15f.md"></section>
+					<section data-markdown="content/slide15g.md"></section>
+					<section data-markdown="content/slide15h.md"></section>
+				</section>
+				<!-- Best Practices -->
+				<section>
+					<section data-markdown="content/slide16.md"></section>
+					<section data-markdown="content/slide16a.md"></section>
+					<section data-markdown="content/slide16b.md"></section>
+					<section data-markdown="content/slide16c.md"></section>
+					<section data-markdown="content/slide16d.md"></section>
+					<section data-markdown="content/slide16e.md"></section>
+					<section data-markdown="content/slide16f.md"></section>
+					<section data-markdown="content/slide16g.md"></section>
+					<section data-markdown="content/slide16h.md"></section>
+					<section data-markdown="content/slide16i.md"></section>
+				</section>
+				<!-- What's next? -->
+				<section>
+					<section data-markdown="content/slide17.md"></section>
+					<section data-markdown="content/slide17a.md"></section>
+				</section>
+				<!-- End -->
+				<section>
+					<section data-markdown="content/slide18.md"></section>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				// center: false,
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
