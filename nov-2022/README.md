@@ -1,16 +1,18 @@
-# Tech Sharing Nov 2022 [Git]
+# Tech Sharing Nov 2022 - Git
 
-Slides are created using [marp vscode extension](https://marp.app/).
+Slides are created using [marp vscode extension](https://marp.app/) and [slidev](https://sli.dev/)
 
 # Slides
 
-Refer to [index.md](index.md) for the slides. [pdf](export/index.pdf) and [html](export/index.html) version can be found in `export` directory
+Refer to [marp/index.md](marp/index.md) or [slidex/slides.md](slidev/slides.md) for the content.
+
+*Slidev has the updated version and is the preferred one
 
 # Demo
 
 Refer to [DEMO.md](DEMO.md)
 
-An archived of the demo can be found in [git-demo.7z](assets/git-demo.7z)
+An archived of the demo can be found in [git-demo.7z](git-demo.7z)
 
 # Reference
 
