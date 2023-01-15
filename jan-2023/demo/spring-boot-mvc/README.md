@@ -307,6 +307,18 @@ Whereas, `Spring Boot` simplify development by
   - Not much difference in terms of lines of code
   - But it saves you from manual conversion
 
+### Commit 5 - Validation
+
+- Validation Annotation
+  - `@NotNull, @NotEmpty, @NotBlank, @Min, @Max, @Email, @Pattern`
+- Two way to trigger validation
+  - `@Validated` at class level
+  - `@Valid` at method level
+  - Can be used anyway, not just `Controllers`
+- Can also use to validate `@PathVariable` and `@RequestParam`
+- Added custom validator annotation `@NameFormat`
+  - Trigger via postman to see
+
 ## Notes
 
 - use MongoTemplate#useEstimatedCount?

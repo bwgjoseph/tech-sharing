@@ -21,6 +21,7 @@ import com.bwgjoseph.springbootmvc.mapper.ProfileMapper;
 import com.bwgjoseph.springbootmvc.models.ProfileRequest;
 import com.bwgjoseph.springbootmvc.models.ProfileResponse;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 // Combination of @Controller and @ResponseBody
@@ -45,7 +46,7 @@ public class ProfileController {
     }
 
     @PostMapping
-    public ProfileResponse create(@RequestBody ProfileRequest profileRequest) {
+    public ProfileResponse create(@Valid @RequestBody ProfileRequest profileRequest) {
         Profile convertedProfile = this.profileMapper.toDomainObject(profileRequest);
         Profile createdProfile = this.profileService.create(convertedProfile);
 
