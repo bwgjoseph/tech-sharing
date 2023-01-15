@@ -143,6 +143,50 @@ Whereas, `Spring Boot` simplify development by
   - Mongo Converter
   - Custom Jackson Serializer / Deserializer
   - HandlerMethodArgumentResolver
+- Plan
+  - API
+    - Go through a standard CRUD API flow
+      - Add @RestController, followed by CRUD
+      - @Transactional
+    - Then build things up from here
+      - @PathVariable, @RequestParam
+      - @Valid, @Validated
+    - Then add exception handling
+      - @ControllerAdvice
+    - Then add some test
+      - @WebMvcTest, @MongoDataTest
+  - Application Properties
+    - .properties / .yaml
+    - profiles
+    - @ConfigurationProperties
+    - @Value
+    - 14 entry point
+  - Use Case
+    - I want to perform some logging at each request
+      - Filters
+      - Interceptor
+    - I want to run some things on application startup
+      - ApplicationRunner
+      - ApplicationReadyEvent
+    - I want to do some action based on event
+      - @EventListener
+    - I want to know who is the current user
+      - @AuthenticatedPrincipal
+    - I want to do some custom json serializer / deserializer
+      - @Json???
+    - I want to cache my dataset
+      - @Cache
+    - I want to solve a cross cutting concern
+      - AOP
+    - I want to introduce a new annotation on my controller to handle (resolve)
+      - HandlerMethodArgumentResolver
+    - I want to have a custom validation annotation and logic
+      - Validator
+    - I want to do pagination
+      - Page vs Slice
+    - I want Spring to manage my object
+      - @Bean
+    
 
 ## References
 
