@@ -331,6 +331,20 @@ Whereas, `Spring Boot` simplify development by
 
 > There's also @PostConstruct but that's more for Bean specific action, that comes with @PreDestroy
 
+### Use Case 2 - Reacting to changes via Events (Pub/Sub)
+
+- Spring provides ApplicationEvent, ApplicationEventPublisher, and ApplicationEventListener
+- Can create own custom event
+- Can listen to Spring Event or own event
+- Supports async, transactional event as well
+- Start the application, and will see
+
+```
+2023-01-16T01:56:15.911+08:00  INFO 9056 --- [  restartedMain] c.b.s.u.s.ApplicationRunnerStartup       : running ApplicationRunnerStartup commands
+2023-01-16T01:56:15.911+08:00  INFO 9056 --- [  restartedMain] c.b.s.u.s.ApplicationRunnerStartup       : publishing mvc event
+2023-01-16T01:56:15.911+08:00  INFO 9056 --- [  restartedMain] c.b.s.usecase.event.MvcEventListener     : source: com.bwgjoseph.springbootmvc.usecase.startup.ApplicationRunnerStartup@5858ad3a, message: mvc event
+```
+
 ## Notes
 
 - use MongoTemplate#useEstimatedCount?
