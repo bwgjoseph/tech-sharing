@@ -225,8 +225,61 @@ Whereas, `Spring Boot` simplify development by
     - Showcase `findByName` API call
       - Turn on debug logging; see console
 
-### Commit 2
+### Commit 2 - Exception Handling
 
+- Exception handling can be handled for per exception, controller, and globally
+
+#### Default
+
+- Call `/profiles/exception`
+- Will see such message
+
+```json
+{
+    "timestamp": "2023-01-15T10:12:50.926+00:00",
+    "status": 500,
+    "error": "Internal Server Error",
+    "trace": "java.lang.RuntimeException: demo\r\n\tat com.bwgjoseph.springbootmvc.profile....",
+    "message": "default exception",
+    "path": "/api/v1/profiles/exception"
+}
+```
+
+- This is the default error response if there is no specific handler
+
+#### Per Exception
+
+* Controlled via `@ResponseStatus`
+
+- Now, let's introduce custom exception `ProfileResponseStatusException` with `@ResponseStatus`
+- Call `/profiles/response-status-exception`
+
+```json
+{
+    "timestamp": "2023-01-15T10:12:50.926+00:00",
+    "status": 400,
+    "error": "Bad Request",
+    "trace": "java.lang.RuntimeException: demo\r\n\tat com.bwgjoseph.springbootmvc.profile....",
+    "message": "profile response status exception",
+    "path": "/api/v1/profiles/response-status-exception"
+}
+```
+
+#### Per Controller
+
+* Controlled via `@ExceptionHandler` within each controller
+
+- Call `/profiles/profile-exception`
+- Will return `handle profile exception`
+
+
+#### @RestControllerAdvice
+
+* Controlled via `@RestControllerAdvice` for all controllers
+
+- Call `/profiles/profile-exception`
+- Will still return `handle profile exception` as the previous setup will still handle it even with global handler
+- Remove local `@ExceptionHandler` and see how it went
 
 ## Notes
 

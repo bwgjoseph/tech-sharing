@@ -3,6 +3,7 @@ package com.bwgjoseph.springbootmvc.profile;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.bwgjoseph.springbootmvc.exception.ProfileException;
+import com.bwgjoseph.springbootmvc.exception.ProfileResponseStatusException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -59,5 +63,25 @@ public class ProfileController {
     @GetMapping("/by-name")
     public List<Profile> findBy(@RequestParam("name") String name) {
         return this.profileService.findByName(name);
+    }
+
+    @GetMapping("/exception")
+    public void exception() {
+        throw new RuntimeException("default exception");
+    }
+
+    @GetMapping("/response-status-exception")
+    public void responseStatusException() {
+        throw new ProfileResponseStatusException();
+    }
+
+    @GetMapping("/profile-exception")
+    public void profileException() {
+        throw new ProfileException("profile exception");
+    }
+
+    @ExceptionHandler(ProfileException.class)
+    public String handlePerException() {
+        return "handle profile exception";
     }
 }
