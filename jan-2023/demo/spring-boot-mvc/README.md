@@ -345,6 +345,23 @@ Whereas, `Spring Boot` simplify development by
 2023-01-16T01:56:15.911+08:00  INFO 9056 --- [  restartedMain] c.b.s.usecase.event.MvcEventListener     : source: com.bwgjoseph.springbootmvc.usecase.startup.ApplicationRunnerStartup@5858ad3a, message: mvc event
 ```
 
+### Commit 6 - Supporting Pagination
+
+*This should have been in the previous CRUD demo, but missed out, hence in here
+
+> Pagination should not be a after thought
+
+- Comes from `PagingAndSortingRepository` which provide `Page<T> findAll(Pageable pageable)`
+- `PageRequest` is a implementation of `Pageable`
+  - `PageRequest.of(page, size, Sort)`
+- `Page` extends `Slice` where
+  - `Page` provides `totalCount` and `totalPage`
+- When to use `Page` or `Slice`?
+  - Based from my understanding, `Slice` if you don't need to know the `total` (more performant).
+  - For `Slice`, you must provide a field `Slice<T> findAllByXXX(String xxx, Pageable pageable)`
+- Can use `@PageableDefault` to define defaults for `Pageable`
+  - Note that `@PageableDefault` is from Spring and default size to 10, and `Pageable` is from Spring Boot and default size is 20
+
 ## Notes
 
 - use MongoTemplate#useEstimatedCount?

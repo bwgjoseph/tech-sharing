@@ -3,6 +3,9 @@ package com.bwgjoseph.springbootmvc.profile;
 import java.util.List;
 
 import org.springframework.core.convert.ConversionService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,8 +38,8 @@ public class ProfileController {
     private final ProfileMapper profileMapper;
 
     @GetMapping
-    public List<Profile> findAll() {
-        return this.profileService.findAll();
+    public Page<Profile> findAll(@PageableDefault Pageable pageable) {
+        return this.profileService.findAll(pageable);
     }
 
     @GetMapping("/{id}")

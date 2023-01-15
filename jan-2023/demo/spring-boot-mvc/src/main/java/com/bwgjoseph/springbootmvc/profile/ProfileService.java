@@ -2,6 +2,8 @@ package com.bwgjoseph.springbootmvc.profile;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -11,8 +13,8 @@ import lombok.RequiredArgsConstructor;
 public class ProfileService {
     private final ProfileRepository profileRepository;
 
-    public List<Profile> findAll() {
-        return this.profileRepository.findAll();
+    public Page<Profile> findAll(Pageable pageable) {
+        return this.profileRepository.findAll(pageable);
     }
 
     public Profile findById(String id) {
