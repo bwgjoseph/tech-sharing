@@ -295,6 +295,18 @@ Whereas, `Spring Boot` simplify development by
 - Converter can be used for any class, and does not have to be for this specific use case
   - For example, converting between `String date` to `LocalDate date`
 
+### Commit 4 - Exploring MapStruct
+
+- Can we do better? Maybe? Let's try out `MapStruct`
+- `MapStruct` is a bean mapping library
+- It provides great default feature out of the box, and allow customization when required
+- Create `ProfileMapper` interface
+  - Specify the two method
+  - See generated source code
+- See updated `ProfileController @PostMapping`
+  - Not much difference in terms of lines of code
+  - But it saves you from manual conversion
+
 ## Notes
 
 - use MongoTemplate#useEstimatedCount?

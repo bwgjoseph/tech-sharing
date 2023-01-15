@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bwgjoseph.springbootmvc.exception.ProfileException;
 import com.bwgjoseph.springbootmvc.exception.ProfileResponseStatusException;
+import com.bwgjoseph.springbootmvc.mapper.ProfileMapper;
 import com.bwgjoseph.springbootmvc.models.ProfileRequest;
 import com.bwgjoseph.springbootmvc.models.ProfileResponse;
 
@@ -30,7 +31,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/v1/profiles")
 public class ProfileController {
     private final ProfileService profileService;
-    private final ConversionService conversionService;
+    private final ProfileMapper profileMapper;
 
     @GetMapping
     public List<Profile> findAll() {
@@ -45,10 +46,10 @@ public class ProfileController {
 
     @PostMapping
     public ProfileResponse create(@RequestBody ProfileRequest profileRequest) {
-        Profile convertedProfile = this.conversionService.convert(profileRequest, Profile.class);
+        Profile convertedProfile = this.profileMapper.toDomainObject(profileRequest);
         Profile createdProfile = this.profileService.create(convertedProfile);
 
-        return this.conversionService.convert(createdProfile, ProfileResponse.class);
+        return this.profileMapper.toProfileDto(createdProfile);
     }
 
     @PutMapping("/{id}")
