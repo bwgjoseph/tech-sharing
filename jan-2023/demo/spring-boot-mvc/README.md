@@ -319,6 +319,18 @@ Whereas, `Spring Boot` simplify development by
 - Added custom validator annotation `@NameFormat`
   - Trigger via postman to see
 
+> Above should roughly conclude the very simple overview of a normal CRUD API
+
+> Now, we shall zoom into a bit more use case demo
+
+### Use Case 1 - I want to run some action on application startup
+
+- ApplicationRunner
+- CommandLineRunner
+- ApplicationEvent
+
+> There's also @PostConstruct but that's more for Bean specific action, that comes with @PreDestroy
+
 ## Notes
 
 - use MongoTemplate#useEstimatedCount?
