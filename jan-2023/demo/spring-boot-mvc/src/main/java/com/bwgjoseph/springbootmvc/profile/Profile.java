@@ -7,8 +7,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
+@ToString
 @Builder(toBuilder = true)
 @Document
 @TypeAlias("profile")

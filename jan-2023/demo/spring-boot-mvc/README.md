@@ -281,6 +281,20 @@ Whereas, `Spring Boot` simplify development by
 - Will still return `handle profile exception` as the previous setup will still handle it even with global handler
 - Remove local `@ExceptionHandler` and see how it went
 
+### Commit 3 - Spring Converter
+
+- First thing first, let's introduce a `Data Transfer Object` also known as `DTO`
+  - Separation of concern between DTO and DO
+  - Request is not the same as Response
+- Let's make some changes to the `@PostMapping`
+  - ProfileRequest > Profile
+  - Profile > ProfileResponse
+  - Write `Converters` and register them via `@Component`
+    - Alternatively, can be register via `FormatterRegistry` in `@Configuration`
+- Use `ConversionService` to trigger the conversion between the various format
+- Converter can be used for any class, and does not have to be for this specific use case
+  - For example, converting between `String date` to `LocalDate date`
+
 ## Notes
 
 - use MongoTemplate#useEstimatedCount?

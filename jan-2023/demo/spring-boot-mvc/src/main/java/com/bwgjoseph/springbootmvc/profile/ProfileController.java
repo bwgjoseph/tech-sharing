@@ -2,6 +2,7 @@ package com.bwgjoseph.springbootmvc.profile;
 
 import java.util.List;
 
+import org.springframework.core.convert.ConversionService;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bwgjoseph.springbootmvc.exception.ProfileException;
 import com.bwgjoseph.springbootmvc.exception.ProfileResponseStatusException;
+import com.bwgjoseph.springbootmvc.models.ProfileRequest;
+import com.bwgjoseph.springbootmvc.models.ProfileResponse;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,6 +30,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/v1/profiles")
 public class ProfileController {
     private final ProfileService profileService;
+    private final ConversionService conversionService;
 
     @GetMapping
     public List<Profile> findAll() {
@@ -40,8 +44,11 @@ public class ProfileController {
     }
 
     @PostMapping
-    public Profile create(@RequestBody Profile profile) {
-        return this.profileService.create(profile);
+    public ProfileResponse create(@RequestBody ProfileRequest profileRequest) {
+        Profile convertedProfile = this.conversionService.convert(profileRequest, Profile.class);
+        Profile createdProfile = this.profileService.create(convertedProfile);
+
+        return this.conversionService.convert(createdProfile, ProfileResponse.class);
     }
 
     @PutMapping("/{id}")
