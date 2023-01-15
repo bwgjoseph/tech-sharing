@@ -1,0 +1,14 @@
+root = true
+
+[*]
+end_of_line = lf
+indent_style = space
+
+[*.xml]
+indent_size = 2
+
+[*.yaml]
+indent_size = 2
+
+[*.java]
+indent_size = 4

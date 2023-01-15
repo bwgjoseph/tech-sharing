@@ -168,6 +168,7 @@ Whereas, `Spring Boot` simplify development by
     - I want to run some things on application startup
       - ApplicationRunner
       - ApplicationReadyEvent
+      - CommandLineRunner
     - I want to do some action based on event
       - @EventListener
     - I want to know who is the current user
@@ -187,6 +188,53 @@ Whereas, `Spring Boot` simplify development by
     - I want Spring to manage my object
       - @Bean
     
+## Commit Flow
+
+- Pre-note
+  - Will not be diving too much into Lombok annotation, but do ask if you need any clarification
+  - *to talk about the best practice along the way
+
+### Commit 1
+
+- There are a lot of stuff, with just a couple of files here, let's try to disect it.
+  - Entry Point - `@SpringBootApplication`
+    - `@EnableAutoConfiguration`: configure beans based on classpath
+    - `@SpringBootConfiguration`: similar to @Configuration but one definition per application, to register extra beans in the context
+    - `@ComponentScan`: scan the packages to register beans into ApplicationContext
+  - Rest
+    - Illustrate using `Profile`
+    - `@RestController` combination of
+      - `@Controller`
+      - `@ResponseBody`: Serialize response into `HttpResponse`
+      - Prior to `Spring 4.0`, you have to annotate `@ResponseBody` on every single controller method to convert from `Java Object` into `HttpResponse`
+      - You definitely know about `@RequestBody` which deserialize from `HttpRequest` into `Java Object [Dto/Do]`
+    - `@RequestMapping` map a incoming request to a specific handler
+      - Since `Spring 4.3`, shorthand annotation was added
+        - `@GetMapping`
+        - `@PostMapping`
+        - `@PutMapping`
+        - `@PatchMapping`
+        - `@DeleteMapping`
+      - It is possible to map multiple endpoint to a single handler
+    - `@PathVariable`
+      - No need to declare value if the variable and pathVariable is same name
+      - Can have more than one per method handler
+    - `@RequestParams`
+      - This is the params passed through URL after ?
+      - We use `Spring Data Derived Query Method` to allow us to generate new query by method name
+    - Showcase `findByName` API call
+      - Turn on debug logging; see console
+
+### Commit 2
+
+
+## Notes
+
+- use MongoTemplate#useEstimatedCount?
+- devtools seem to reload for `./mvnw spring-boot:run` and not really for IDE although it works too
+- should PUT endpoint require `id` as part of the payload?
+  - this is tricky because w/o `id`, it can be seen as create if directly call `.save` method
+  - https://stackoverflow.com/questions/27900041/rest-put-ids-in-body-or-not
 
 ## References
 
