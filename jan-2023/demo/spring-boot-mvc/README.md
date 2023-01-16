@@ -382,6 +382,14 @@ Whereas, `Spring Boot` simplify development by
 - `AOP` is slightly different where it can target at any part of the codebase
   - Type of Advice: `before, after, after return, after throw, around`
 
+### Use Case 4 - I want to have custom annotation at controller args
+
+- Especially useful if we want to inject some value into the original request
+- Or to extract a request value information
+- I think that's how most of the common annotation works (@Valid @RequestBody @AuthenticationPrinciple)
+
+Ref: https://www.springcloud.io/post/2022-09/springmvc-json-param/#gsc.tab=0, https://reflectoring.io/spring-boot-argumentresolver/
+
 ## Notes
 
 - use MongoTemplate#useEstimatedCount?

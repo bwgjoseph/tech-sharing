@@ -186,4 +186,16 @@ class ProfileControllerTests {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andDo(print());
     }
+
+    @Test
+    void argResolver() throws Exception {
+        this.mockMvc.perform(
+            get("/api/v1/profiles/secret-value")
+            .contentType(MediaType.APPLICATION_JSON)
+            .accept(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(content().string("overwrite.secret.value"))
+            .andDo(print());
+    }
 }

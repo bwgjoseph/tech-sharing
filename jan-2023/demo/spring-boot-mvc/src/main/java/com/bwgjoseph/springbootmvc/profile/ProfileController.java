@@ -24,6 +24,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.bwgjoseph.springbootmvc.exception.ProfileException;
 import com.bwgjoseph.springbootmvc.exception.ProfileResponseStatusException;
+import com.bwgjoseph.springbootmvc.handlerresolver.SecretValue;
 import com.bwgjoseph.springbootmvc.logging.LoggingAop;
 import com.bwgjoseph.springbootmvc.mapper.ProfileMapper;
 import com.bwgjoseph.springbootmvc.models.ProfileRequest;
@@ -31,7 +32,9 @@ import com.bwgjoseph.springbootmvc.models.ProfileResponse;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 // Combination of @Controller and @ResponseBody
 @RestController
 @RequiredArgsConstructor
@@ -55,7 +58,9 @@ public class ProfileController {
     }
 
     @PostMapping
-    public ResponseEntity<ProfileResponse> create(@Valid @RequestBody ProfileRequest profileRequest) {
+    public ResponseEntity<ProfileResponse> create(@Valid @RequestBody ProfileRequest profileRequest, @SecretValue("overwrite.secret.value") String sValue) {
+        log.info("Secret value is " + sValue);
+
         Profile convertedProfile = this.profileMapper.toDomainObject(profileRequest);
         Profile createdProfile = this.profileService.create(convertedProfile);
 
@@ -111,5 +116,12 @@ public class ProfileController {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public String handlePerException() {
         return "handle profile exception";
+    }
+
+    @GetMapping("/secret-value")
+    public String getSecretValue(@SecretValue("overwrite.secret.value") String sValue) {
+        log.info("Secret value is " + sValue);
+
+        return sValue;
     }
 }
