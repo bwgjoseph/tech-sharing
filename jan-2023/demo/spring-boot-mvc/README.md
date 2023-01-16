@@ -362,6 +362,15 @@ Whereas, `Spring Boot` simplify development by
 - Can use `@PageableDefault` to define defaults for `Pageable`
   - Note that `@PageableDefault` is from Spring and default size to 10, and `Pageable` is from Spring Boot and default size is 20
 
+### Commit 7 - Test
+
+#### @WebMvcTest
+
+- See inline notes
+- There are some common test such as
+  - `@SpringBootTest, @DataMongoTest`
+- And can integrate with `Spring Security` to ensure user with right access can only access allowed endpoint
+
 ## Notes
 
 - use MongoTemplate#useEstimatedCount?

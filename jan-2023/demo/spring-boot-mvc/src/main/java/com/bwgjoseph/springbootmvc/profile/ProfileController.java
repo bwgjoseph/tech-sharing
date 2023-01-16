@@ -2,10 +2,11 @@ package com.bwgjoseph.springbootmvc.profile;
 
 import java.util.List;
 
-import org.springframework.core.convert.ConversionService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +17,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.bwgjoseph.springbootmvc.exception.ProfileException;
 import com.bwgjoseph.springbootmvc.exception.ProfileResponseStatusException;
@@ -49,11 +53,17 @@ public class ProfileController {
     }
 
     @PostMapping
-    public ProfileResponse create(@Valid @RequestBody ProfileRequest profileRequest) {
+    public ResponseEntity<ProfileResponse> create(@Valid @RequestBody ProfileRequest profileRequest) {
         Profile convertedProfile = this.profileMapper.toDomainObject(profileRequest);
         Profile createdProfile = this.profileService.create(convertedProfile);
 
-        return this.profileMapper.toProfileDto(createdProfile);
+        UriComponents location = UriComponentsBuilder.newInstance()
+            .path("/api/v1/profiles/{id}")
+            .buildAndExpand(createdProfile.getId());
+
+        return ResponseEntity
+            .created(location.toUri())
+            .body(this.profileMapper.toProfileDto(createdProfile));
     }
 
     @PutMapping("/{id}")
@@ -93,6 +103,10 @@ public class ProfileController {
     }
 
     @ExceptionHandler(ProfileException.class)
+    // interestingly, when using @ExceptionHandler for a specific exception, it does not
+    // return the status code base on exception
+    // and that we have to manually return it
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public String handlePerException() {
         return "handle profile exception";
     }
