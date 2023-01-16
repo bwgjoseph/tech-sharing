@@ -371,6 +371,17 @@ Whereas, `Spring Boot` simplify development by
   - `@SpringBootTest, @DataMongoTest`
 - And can integrate with `Spring Security` to ensure user with right access can only access allowed endpoint
 
+### Use Case 3 - I want to log all my request and response
+
+- There are three possible candidate `Filter, Interceptor, and AOP`
+- See `RequestResponseFilter`
+- See `RequestResponseInterceptor`, requires to register with `InterceptorRegistry`
+- Key difference is
+  - `Filter` handled at servlet, `Interceptor` handled at Spring Context
+  - `Filter` is useful for `Authentication, Logging, Auditing, etc`, `Interceptor` is useful for `Authorization, Logging, etc`
+- `AOP` is slightly different where it can target at any part of the codebase
+  - Type of Advice: `before, after, after return, after throw, around`
+
 ## Notes
 
 - use MongoTemplate#useEstimatedCount?

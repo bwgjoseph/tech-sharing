@@ -24,6 +24,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.bwgjoseph.springbootmvc.exception.ProfileException;
 import com.bwgjoseph.springbootmvc.exception.ProfileResponseStatusException;
+import com.bwgjoseph.springbootmvc.logging.LoggingAop;
 import com.bwgjoseph.springbootmvc.mapper.ProfileMapper;
 import com.bwgjoseph.springbootmvc.models.ProfileRequest;
 import com.bwgjoseph.springbootmvc.models.ProfileResponse;
@@ -46,6 +47,7 @@ public class ProfileController {
         return this.profileService.findAll(pageable);
     }
 
+    @LoggingAop
     @GetMapping("/{id}")
     // no need to specify value if name matches
     public Profile findOne(@PathVariable String id) {
