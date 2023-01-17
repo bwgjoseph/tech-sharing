@@ -187,7 +187,7 @@ Whereas, `Spring Boot` simplify development by
       - Page vs Slice
     - I want Spring to manage my object
       - @Bean
-    
+
 ## Commit Flow
 
 - Pre-note
@@ -390,6 +390,16 @@ Whereas, `Spring Boot` simplify development by
 
 Ref: https://www.springcloud.io/post/2022-09/springmvc-json-param/#gsc.tab=0, https://reflectoring.io/spring-boot-argumentresolver/
 
+### Others
+
+- I want to have typed-safe configuration; @ConfigurationProperties
+- I want to write custom serializer / deserializer for API; @JsonComponent
+- I want Spring to manage my object; @Bean
+- I want to implement caching; @Cache
+- I want to integrate with Spring Security; @AuthenticatedPrinciple
+- I want to Spring to help generator audit info; @CreatedBy, @CreatedAt
+- I want to write custom serializer / deserializer for Mongo; @ReadingConverter, @WritingConverter
+
 ## Notes
 
 - use MongoTemplate#useEstimatedCount?
@@ -407,3 +417,5 @@ Ref: https://www.springcloud.io/post/2022-09/springmvc-json-param/#gsc.tab=0, ht
 - [java-servlets-servlet-api-and-servlet-life-cycle](https://medium.com/@cyberblogger007/java-servlets-servlet-api-and-servlet-life-cycle-with-a-simple-demo-code-43a34c8bb785)
 - [spring-boot-annotation-reference-01-a](https://foojay.io/today/spring-boot-annotation-reference-01-a/)
 - [spring-boot-annotation-reference-01-b](https://foojay.io/today/spring-boot-annotation-reference-01-b/)
+- [spring-boot-argumentresolver](https://reflectoring.io/spring-boot-argumentresolver/)
+- [using-custom-arguments-in-spring-mvc-controllers](https://sadique.io/blog/2016/01/30/using-custom-arguments-in-spring-mvc-controllers/)
